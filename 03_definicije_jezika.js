@@ -43,6 +43,18 @@ let TXT_definicijaJezika = {
 };
 
 /* -------------------------------------------------------------------------- */
+// Jezik - ShellSym
+/* -------------------------------------------------------------------------- */
+
+let ShellSym_definicijaJezika = {
+	
+	naziv:        "ShellSym",
+	defaultKlasa: "tekst",      
+	//pomTekst:     tekstTXT
+
+};
+
+/* -------------------------------------------------------------------------- */
 // Jezik - CSS:
 /* -------------------------------------------------------------------------- */
 
@@ -325,6 +337,10 @@ let CSS_parserSpecListe = new Map();
 
 		[ "hover"  , "pseudoklasa" ] ,
 		[ "active" , "pseudoklasa" ] ,
+
+		/* ----- posebni ----- */
+
+		[ "root" , "root" ] ,
 	
 	] );
 
@@ -334,7 +350,7 @@ let CSS_parserSpecListe = new Map();
 
 		[ "px" , "jedinica" ] ,
 		[ "em" , "jedinica" ] ,
-	
+
 	] );
 
 CSS_parserSpecListe.set( 0 , CSS_parserSpecLista_0 )
@@ -353,6 +369,7 @@ let CSS_definicijaJezika = {
 	parserPrepravaljanje:  CSS_parserPrepravljanje,
 	parserTokeni:          CSS_parserTokeni,
 	parserSpecListe:       CSS_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstCSS
 
 }
@@ -636,18 +653,27 @@ let C_parserSpecListe = new Map();
 		[ "ToString"  , "specijalni_token" ] ,
 		[ "WriteLine" , "specijalni_token" ] ,
 		[ "Year"      , "specijalni_token" ] ,
+		[ "calloc"    , "specijalni_token" ] ,
 		[ "cout"      , "specijalni_token" ] ,
+		[ "delete"    , "specijalni_token" ] ,
 		[ "endl"      , "specijalni_token" ] ,
 		[ "fclose"    , "specijalni_token" ] ,
 		[ "fopen"     , "specijalni_token" ] ,
 		[ "fprintf"   , "specijalni_token" ] ,
 		[ "fscanf"    , "specijalni_token" ] ,
 		[ "main"      , "specijalni_token" ] ,
+		[ "malloc"    , "specijalni_token" ] ,
+		[ "memcpy"    , "specijalni_token" ] ,
+		[ "memset"    , "specijalni_token" ] ,
 		[ "out"       , "specijalni_token" ] ,
 		[ "printf"    , "specijalni_token" ] ,
+		[ "realloc"   , "specijalni_token" ] ,
 		[ "scanf"     , "specijalni_token" ] ,
 		[ "string"    , "specijalni_token" ] ,
+		[ "value"     , "specijalni_token" ] ,
 		[ "vector"    , "specijalni_token" ] ,
+
+		[ "std"       , "namespace"        ] , // C++
 	
 	] );
 
@@ -667,6 +693,7 @@ let C_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       C_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstC
 
 };
@@ -685,6 +712,7 @@ let CLIKE_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       C_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstC
 
 };
@@ -707,6 +735,7 @@ let CPP_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       C_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstCPP
 
 };
@@ -729,6 +758,7 @@ let C_Sharp_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       C_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstCSharp
 
 };
@@ -846,6 +876,7 @@ let Java_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       Java_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstJava
 
 };
@@ -942,6 +973,7 @@ let JavaScript_parserSpecListe = new Map();
 		[ "exec"                   , "specijalni_token" ] ,
 		[ "fetch"                  , "specijalni_token" ] ,
 		[ "forEach"                , "specijalni_token" ] ,
+		[ "fs"                     , "specijalni_token" ] ,
 		[ "getElementById"         , "specijalni_token" ] ,
 		[ "getElementsByClassName" , "specijalni_token" ] ,
 		[ "getElementsByTagName"   , "specijalni_token" ] ,
@@ -956,6 +988,7 @@ let JavaScript_parserSpecListe = new Map();
 		[ "map"                    , "specijalni_token" ] ,
 		[ "match"                  , "specijalni_token" ] ,
 		[ "parentElement"          , "specijalni_token" ] ,
+		[ "path"                   , "specijalni_token" ] ,
 		[ "pop"                    , "specijalni_token" ] ,
 		[ "push"                   , "specijalni_token" ] ,
 		[ "querySelectorAll"       , "specijalni_token" ] ,
@@ -973,6 +1006,7 @@ let JavaScript_parserSpecListe = new Map();
 		[ "toLowerCase"            , "specijalni_token" ] ,
 		[ "toString"               , "specijalni_token" ] ,
 		[ "toUpperCase"            , "specijalni_token" ] ,
+		[ "writeFile"              , "specijalni_token" ] ,
 
 	] );
 
@@ -992,6 +1026,7 @@ let JavaScript_definicijaJezika = {
 	parserPrepravaljanje:  C_parserPrepravljanje,
 	parserTokeni:          C_parserTokeni,
 	parserSpecListe:       JavaScript_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstJS
 
 };
@@ -1365,6 +1400,7 @@ let HTML_definicijaJezika = {
 	parserPrepravaljanje:  HTML_parserPrepravljanje,
 	parserTokeni:          HTML_parserTokeni,
 	parserSpecListe:       HTML_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeHTML,
 	//pomTekst:              tekstHTML
 
 }
@@ -1381,6 +1417,7 @@ let XML_definicijaJezika = {
 	parserPrepravaljanje:  HTML_parserPrepravljanje,
 	parserTokeni:          HTML_parserTokeni,
 	parserSpecListe:       HTML_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeHTML,
 	//pomTekst:              tekstHTML
 
 }
@@ -1471,21 +1508,37 @@ let SQL_parserSpecListe = new Map();
 		[ "AUTO_INCREMENT" , "rezervisana_rec" ] ,
 		[ "BY"             , "rezervisana_rec" ] ,
 		[ "CREATE"         , "rezervisana_rec" ] ,
+		[ "CHARACTER"      , "rezervisana_rec" ] ,
+		[ "COLLATE"        , "rezervisana_rec" ] ,
 		[ "DATABASE"       , "rezervisana_rec" ] ,
 		[ "DELETE"         , "rezervisana_rec" ] ,
+		[ "DESC"           , "rezervisana_rec" ] ,
+		[ "DISTINCT"       , "rezervisana_rec" ] ,
+		[ "DROP"           , "rezervisana_rec" ] ,
+		[ "EXISTS"         , "rezervisana_rec" ] ,
 		[ "FOREIGN"        , "rezervisana_rec" ] ,
 		[ "FROM"           , "rezervisana_rec" ] ,
+		[ "GROUP"          , "rezervisana_rec" ] ,
+		[ "HAVING"         , "rezervisana_rec" ] ,
+		[ "IF"             , "rezervisana_rec" ] ,
 		[ "INSERT"         , "rezervisana_rec" ] ,
+		[ "INNER"          , "rezervisana_rec" ] ,
 		[ "INTO"           , "rezervisana_rec" ] ,
+		[ "JOIN"           , "rezervisana_rec" ] ,
 		[ "KEY"            , "rezervisana_rec" ] ,
+		[ "LEFT"           , "rezervisana_rec" ] ,
 		[ "NOT"            , "rezervisana_rec" ] ,
 		[ "NULL"           , "rezervisana_rec" ] ,
+		[ "ON"             , "rezervisana_rec" ] ,
 		[ "ORDER"          , "rezervisana_rec" ] ,
+		[ "OUTER"          , "rezervisana_rec" ] ,
 		[ "PRIMARY"        , "rezervisana_rec" ] ,
 		[ "REFERENCES"     , "rezervisana_rec" ] ,
+		[ "RIGHT"          , "rezervisana_rec" ] ,
 		[ "SELECT"         , "rezervisana_rec" ] ,
 		[ "SET"            , "rezervisana_rec" ] ,
 		[ "TABLE"          , "rezervisana_rec" ] ,
+		[ "UNIQUE"         , "rezervisana_rec" ] ,
 		[ "UPDATE"         , "rezervisana_rec" ] ,
 		[ "USE"            , "rezervisana_rec" ] ,
 		[ "VALUES"         , "rezervisana_rec" ] ,
@@ -1526,6 +1579,10 @@ let SQL_parserSpecListe = new Map();
 		[ "int"      , "tip_promenljive" ] ,
 		[ "varchar"  , "tip_promenljive" ] ,
 
+		/* ----- Ugrađene funkcije ----- */
+
+		[ "CONCAT"   , "ugradjena_funkcija" ] ,
+
 	] );
 
 SQL_parserSpecListe.set( 0 , SQL_parserSpecLista_0 );
@@ -1543,6 +1600,7 @@ let SQL_definicijaJezika = {
 	parserPrepravaljanje:  SQL_parserPrepravljanje,
 	parserTokeni:          SQL_parserTokeni,
 	parserSpecListe:       SQL_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstSQL
 
 };
@@ -1710,6 +1768,7 @@ let Python_definicijaJezika = {
 	parserPrepravaljanje:  Python_parserPrepravljanje,
 	parserTokeni:          Python_parserTokeni,
 	parserSpecListe:       Python_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
 	//pomTekst:              tekstPython
 
 }
@@ -2030,6 +2089,9 @@ let PHP_parserSpecListe = new Map();
 		[ "mysqli_num_rows"           , "specijalni_token" ] ,
 		[ "mysqli_query"              , "specijalni_token" ] ,
 		[ "mysqli_real_escape_string" , "specijalni_token" ] ,
+		[ "mysqli_stmt_bind_param"    , "specijalni_token" ] ,
+		[ "mysqli_stmt_execute"       , "specijalni_token" ] ,
+		[ "mysqli_prepare"            , "specijalni_token" ] ,
 		[ "password_hash"             , "specijalni_token" ] ,
 		[ "pregmatch"                 , "specijalni_token" ] ,
 		[ "rand"                      , "specijalni_token" ] ,
@@ -2048,7 +2110,6 @@ let PHP_parserSpecListe = new Map();
 PHP_parserSpecListe.set( 10 , PHP_parserSpecLista_10 );
 
 let PHP_definicijaJezika = {
-	
 	naziv:                 "PHP",
 	defaultKlasa:          "tekst",
 	lekser:                lekserOpsti,
@@ -2060,112 +2121,113 @@ let PHP_definicijaJezika = {
 	parserPrepravaljanje:  PHP_parserPrepravljanje,
 	parserTokeni:          PHP_parserTokeni,
 	parserSpecListe:       PHP_parserSpecListe,
-	//pomTekst:              tekstPHP
-
+	funkcijaPrepravke:     funkcijaPrepravkeNull,
+	/* pomTekst:              tekstPHP */
 };
 
 /* -------------------------------------------------------------------------- */
 // Jezik - JSON
 /* -------------------------------------------------------------------------- */
 
-let JSON_lekserTokeni = new Map( [
-	
-	[ ":" ,  "" ] ,
-	[ "[" ,  "" ] ,
-	[ "]" ,  "" ] ,
-	[ "," ,  "" ] ,
-	[ "\"" , "" ] ,
-	[ "\'" , "" ] ,
-	[ "\`" , "" ] ,
-
-] );
-
-let JSON_parserPrepravljanje = new Map( [
-	
-	[ 0 , [ false , false , "tekst"             ] ] ,
-	[ 1 , [ false , true  , "svojstvo_naziv"    ] ] ,
-	[ 2 , [ false , false , "svojstvo_vrednost" ] ] ,
-	[ 3 , [ true  , true  , "niska_apostrofi"   ] ] ,
-	[ 4 , [ true  , true  , "niska_navodnici"   ] ] ,
-	[ 5 , [ true  , true  , "niska_backtick"    ] ] ,
-
-] );
-
-let JSON_parserTokeni = new Map();
-	
-	let JSON_parserLista_0 = new Map( [
-
-		/* ----- promena konteksta ----- */
-
-		[ "{"  , [ true , false , 1 , "operator"        ] ] ,
-		[ "\"" , [ true , false , 3 , "niska_navodnici" ] ] ,
-		[ "\'" , [ true , false , 4 , "niska_apostrofi" ] ] ,
-		[ "\`" , [ true , false , 5 , "niska_backtick"  ] ] ,
-
-	] );
-
-	let JSON_parserLista_1 = new Map( [
-		
-		[ ":" , [ true  , false ,  2 , "svojstvo_dodela"   ] ] ,
-		[ "}" , [ false , true  , -1 , "operator         " ] ] ,
-	
-	] );
-
-
-	let JSON_parserLista_2 = new Map( [
-		
-		[ "{"  , [ true  , false ,  1 , "operator"        ] ] ,
-		[ "\"" , [ true  , false ,  3 , "niska_navodnici" ] ] ,
-		[ "\'" , [ true  , false ,  4 , "niska_apostrofi" ] ] ,
-		[ "\`" , [ true  , false ,  5 , "niska_backtick"  ] ] ,
-		[ ","  , [ false , true  , -1 , "operator"        ] ] ,
-		[ "}"  , [ false , true  , -1 , "operator"        ] ] ,
-	
-	] );
-
-	let JSON_parserLista_3 = new Map( [
-		
-		[ "\"" , [ false , true , -1 , "niska_navodnici" ] ] ,
-	
-	] );
-
-	let JSON_parserLista_4 = new Map( [
-		
-		[ "\'" , [ false , true , -1 , "niska_apostrofi" ] ] ,
-	
-	] );
-
-	let JSON_parserLista_5 = new Map( [
-		
-		[ "\`" , [ false , true , -1 , "niska_backtick" ] ] ,
-	
-	] );
-
-JSON_parserTokeni.set( 0 , JSON_parserLista_0 )
-                 .set( 1 , JSON_parserLista_1 )
-                 .set( 2 , JSON_parserLista_2 )
-                 .set( 3 , JSON_parserLista_3 )
-                 .set( 4 , JSON_parserLista_4 )
-                 .set( 5 , JSON_parserLista_5 )
-
-let JSON_parserSpecListe = new Map();
-
-let JSON_definicijaJezika = {
-	
-	naziv:                 "JSON",
-	defaultKlasa:          "tekst",
-	lekser:                lekserOpsti,
-	parser:                parserOpsti,
-	lekserTokeni:          JSON_lekserTokeni,
-	maksDuzinaSpajanje:    1,
-	kontekstZaGenerike:    -1,
-	kontekstZaRegex:       -1,
-	parserPrepravaljanje:  JSON_parserPrepravljanje,
-	parserTokeni:          JSON_parserTokeni,
-	parserSpecListe:       JSON_parserSpecListe,
-	//pomTekst:              tekstSQL
-
-};
+// let JSON_lekserTokeni = new Map( [
+// 	[ "{" ,  "" ] ,
+// 	[ "}" ,  "" ] ,
+// 	[ "\"" , "" ] ,
+// 	[ ":" ,  "" ] ,
+// 	[ "[" ,  "" ] ,
+// 	[ "]" ,  "" ] ,
+// 	[ "," ,  "" ] ,
+// 	[ "'" ,  "" ] ,
+// 	[ "`" ,  "" ] ,
+// ] );
+//
+// let JSON_parserPrepravljanje = new Map( [
+// 	[ 0 ,  [ false , false , "tekst"             ] ] ,
+// 	[ 10 , [ false , true  , "svojstvo_naziv"    ] ] ,
+// 	[ 20 , [ false , false , "svojstvo_vrednost" ] ] ,
+// 	[ 30 , [ true  , true  , "niska_apostrofi"   ] ] ,
+// 	[ 40 , [ true  , true  , "niska_navodnici"   ] ] ,
+// 	[ 50 , [ true  , true  , "niska_backtick"    ] ] ,
+// 	[ 60 , [ false , false , "niz"               ] ] ,
+// ] );
+//
+// const JSON_parserTokeni = new Map();
+// 	
+// 	const JSON_parserLista_0 = new Map( [
+// 		/* ----- promena konteksta ----- */
+// 		[ "{"  , [ true , false , 10 , "json_obj_zagrada_otvorena" ] ] ,
+// 	] );
+//
+// 	const JSON_parserLista_10 = new Map( [
+// 		[ ":" , [ true  , false , 20 , "svojstvo_dodela"   ] ] ,
+// 	] );
+//
+//
+// 	const JSON_parserLista_20 = new Map( [
+// 		[ "{"  , [ true  , false , 10 , "json_obj_zagrada_otvorena"  ] ] ,
+// 		[ "'" ,  [ true  , false , 30 , "niska_apostrofi"            ] ] ,
+// 		[ "\"" , [ true  , false , 40 , "niska_navodnici"            ] ] ,
+// 		[ "`" ,  [ true  , false , 50 , "niska_backtick"             ] ] ,
+// 		[ "[" ,  [ true  , false , 60 , "niz_zagrada"                ] ] ,
+// 		[ ","  , [ false , true  , -1 , "operator"                   ] ] ,
+// 		[ "}"  , [ false , true  , -1 , "json_obj_zagrada_zatvorena" ] ] ,
+// 	] );
+//
+// 	const JSON_parserLista_30 = new Map( [
+// 		[ "'" , [ false , true , -1 ,  "niska_apostrofi" ] ] ,
+// 	] );
+//
+// 	const JSON_parserLista_40 = new Map( [
+// 		[ "\"" , [ false , true , -1 , "niska_navodnici" ] ] ,
+// 	] );
+//
+// 	const JSON_parserLista_50 = new Map( [
+// 		[ "`" , [ false , true , -1 ,  "niska_backtick" ] ] ,
+// 	] );
+//
+// 	const JSON_parserLista_60 = new Map( [
+// 		[ "{"  , [ true  , false , 10 , "json_obj_zagrada_X"   ] ] ,
+// 		[ "["  , [ true  , false , 60 , "niz_zagrada_otvorena" ] ] ,
+// 		[ "'"  , [ true  , false , 30 , "niska_apostrofi"      ] ] ,
+// 		[ "\"" , [ true  , false , 40 , "niska_navodnici"      ] ] ,
+// 		[ "`"  , [ true  , false , 50 , "niska_backtick"       ] ] ,
+// 		[ ","  , [ false , true  , -1 , "operator"             ] ] ,
+// 		[ "]"  , [ false , true  , -1 , "niz_zagrada"          ] ] ,
+// 	] );
+//
+// JSON_parserTokeni.set( 0 ,  JSON_parserLista_0 )
+//                  .set( 10 , JSON_parserLista_10 )
+//                  .set( 20 , JSON_parserLista_20 )
+//                  .set( 30 , JSON_parserLista_30 )
+//                  .set( 40 , JSON_parserLista_40 )
+//                  .set( 50 , JSON_parserLista_50 )
+//                  .set( 60 , JSON_parserLista_60 )
+//
+// const JSON_parserSpecListe = new Map();
+//
+// 	const JSON_parserSpecListe_20 = new Map( [
+// 		[ "true"   , "rezervisana_rec"  ] ,
+// 		[ "false"  , "rezervisana_rec"  ] ,
+// 		[ "null"   , "specijalni_token" ] ,
+// 	] );
+//
+// JSON_parserSpecListe.set(20, JSON_parserSpecListe_20);
+//
+// const JSON_definicijaJezika = {
+// 	naziv:                 "JSON",
+// 	defaultKlasa:          "tekst",
+// 	lekser:                lekserOpsti,
+// 	parser:                parserOpsti,
+// 	lekserTokeni:          JSON_lekserTokeni,
+// 	maksDuzinaSpajanje:    1,
+// 	kontekstZaGenerike:    -1,
+// 	kontekstZaRegex:       -1,
+// 	parserPrepravaljanje:  JSON_parserPrepravljanje,
+// 	parserTokeni:          JSON_parserTokeni,
+// 	parserSpecListe:       JSON_parserSpecListe,
+// 	funkcijaPrepravke:     funkcijaPrepravkeNull,
+// 	/* pomTekst:              tekstSQL */
+// };
 
 /* -------------------------------------------------------------------------- */
 // Jezik - Assembler
@@ -2212,7 +2274,42 @@ let Assembler_definicijaJezika = {
 	regexRastavljanje:  Assembler_regexRastavljanje,
 	listaRegex:         Assembler_listaRegex,
 	listaParser:        Assembler_listaParser,
-	listeSpec:          Assembler_specijalneListe
+	listeSpec:          Assembler_specijalneListe,
+	funkcijaPrepravke:  funkcijaPrepravkeNull,
+}
+
+/* -------------------------------------------------------------------------- */
+// Jezik - JSON
+/* -------------------------------------------------------------------------- */
+
+let JSON_regexRastavljanje = /(\s|\\"|"|\{|\}|\[|\]|:|,)/g
+
+let JSON_listaRegex = [
+	[ /\{|\}/g     ,  "json_obj_zagrada" , true , false ] ,
+	[ /\[|\]/g     ,  "niz_zagrada"      , true , false ] ,
+	[ /,/g         ,  "operator"         , true , false ] ,
+	[ /\d*\.*\d+/g ,  "broj"             , true , false ] ,
+	[ /null/g ,       "specijalni_token" , true , false ] ,
+	[ /true|false/g , "boolean"          , true , false ] ,
+];
+
+let JSON_listaParser = [
+
+];
+
+let JSON_specijalneListe = [
+
+];
+
+let JSON_definicijaJezika = {
+	naziv:              "JSON",
+	lekser:             lekserRegex,
+	parser:             parserRegex,
+	regexRastavljanje:  JSON_regexRastavljanje,
+	listaRegex:         JSON_listaRegex,
+	listaParser:        JSON_listaParser,
+	listeSpec:          JSON_specijalneListe,
+	funkcijaPrepravke:  funkcijaPrepravkeJson,
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2249,7 +2346,8 @@ let Markup_definicijaJezika = {
 	regexRastavljanje:  Markup_regexRastavljanje,
 	listaRegex:         Markup_listaRegex,
 	listaParser:        Markup_listaParser,
-	listeSpec:          Markup_specijalneListe
+	listeSpec:          Markup_specijalneListe,
+	funkcijaPrepravke:  funkcijaPrepravkeNull,
 
 }
 
@@ -2286,13 +2384,264 @@ let RegEx_definicijaJezika = {
 	regexRastavljanje:  RegEx_regexRastavljanje,
 	listaRegex:         RegEx_listaRegex,
 	listaParser:        RegEx_listaParser,
-	listeSpec:          RegEx_specijalneListe
+	listeSpec:          RegEx_specijalneListe,
+	funkcijaPrepravke:  funkcijaPrepravkeNull,
 
 }
+
+/* -------------------------------------------------------------------------- */
+// Jezik - shell
+/* -------------------------------------------------------------------------- */
+
+let Shell_lekserTokeni = new Map( [
+
+	[ "##" , "sudo_naredba"          ] ,
+	[ "#"  , ""                      ] ,
+	[ "("  , "zagrada"               ] ,
+	[ ")"  , "zagrada"               ] ,
+	[ "["  , "conditional_zagrada"   ] ,
+	[ "]"  , "conditional_zagrada"   ] ,
+	[ "|"  , "pajp_simbol"           ] ,
+	[ ">>" , "redirekcija_append"    ] ,
+	[ "<<" , "redirekcija_append"    ] ,
+	[ "<"  , "redirekcija_overwrite" ] ,
+	[ ">"  , "redirekcija_overwrite" ] ,
+	[ "&"  , "operator"              ] ,
+	[ "&&" , "operator"              ] ,
+	[ "="  , "operator"              ] ,
+	[ "--" , ""                      ] ,
+	[ "$"  , ""                      ] ,
+	[ "\"" , ""                      ] ,
+	[ "\'" , ""                      ] ,
+	[ "\`" , ""                      ] ,
+	[ ":"  , ""                      ] ,
+	[ ";"  , ""                      ] ,
+	[ "+"  , "operator"              ] ,
+	[ "-"  , ""                      ] ,
+	[ "*"  , "operator"              ] ,
+	[ "/"  , "operator"              ] ,
+	[ ","  , ""                      ] ,
+	[ "."  , ""                      ] ,
+	[ "~"  , ""                      ] ,
+
+] );
+
+let Shell_parserPrepravljanje = new Map( [
+	
+	[ 0 , [ false , false , "identifikator"   ] ] ,
+	[ 1 , [ true  , true  , "komentar"        ] ] ,
+	[ 2 , [ true  , true  , "niska_navodnici" ] ] ,
+	[ 3 , [ true  , true  , "niska_apostrofi" ] ] ,
+	[ 4 , [ true  , true  , "niska_backtick"  ] ] ,
+	[ 5 , [ true  , true  , "putanja"         ] ] ,
+	[ 6 , [ true  , true  , "flag_unix"       ] ] ,
+	[ 7 , [ true  , true  , "flag_gnu"        ] ] ,
+	[ 8 , [ true  , true  , "variable"        ] ] ,
+
+] );
+
+let Shell_parserTokeni = new Map();
+	
+	let Shell_parserLista_0 = new Map( [
+		
+		/* ----- promena konteksta ----- */
+
+		// [ "("  , [ true , false ,  0 , "zagrada"         ] ] ,
+		// [ ")"  , [ true , false , -1 , "zagrada"         ] ] ,
+		[ "#"  , [ true , false ,  1 , "komentar"        ] ] ,
+		[ "\"" , [ true , false ,  2 , "niska_navodnici" ] ] ,
+		[ "\'" , [ true , false ,  3 , "niska_apostrofi" ] ] ,
+		[ "\`" , [ true , false ,  4 , "niska_backtick"  ] ] ,
+		[ "/" ,  [ true , false ,  5 , "putanja"         ] ] ,
+		[ "~" ,  [ true , false ,  5 , "putanja"         ] ] ,
+		[ "." ,  [ true , false ,  5 , "putanja"         ] ] ,
+		[ "-" ,  [ true , false ,  6 , "flag_unix"       ] ] ,
+		[ "--" , [ true , false ,  7 , "flag_gnu"        ] ] ,
+		[ "$"  , [ true , false ,  8 , "var_dolar"       ] ] ,
+
+		/* ----- specijalni tokeni ----- */
+
+		// [ ">>" , [ false , false , -1 , "redirekcija_append"   ] ] ,
+		[ ">"  , [ false , false , -1 , "redirekcija_overwrite"   ] ] ,
+		[ "<"  , [ false , false , -1 , "redirekcija_overwrite"   ] ] ,
+		// [ "=" , [ false , false , -1 , "operator"              ] ] ,
+		// [ "+" , [ false , false , -1 , "operator"              ] ] ,
+		// [ "*" , [ false , false , -1 , "operator"              ] ] ,
+		// [ "," , [ false , false , -1 , "operator"              ] ] ,
+
+	] );
+
+	let Shell_parserLista_1 = new Map( [
+		
+		[ "\n" , [ false , true , -1 , "white_space" ] ] ,
+	
+	] );
+
+	let Shell_parserLista_2 = new Map( [
+		
+		[ "\"" , [ false , true , -1 , "niska_navodnici" ] ] ,
+	
+	] );
+	
+	let Shell_parserLista_3 = new Map( [
+		
+		[ "\'" , [ false , true , -1 , "niska_apostrofi" ] ] ,
+	
+	] );
+
+	let Shell_parserLista_4 = new Map( [
+		
+		[ "\`" , [ false , true , -1 , "niska_backtick" ] ] ,
+	
+	] );
+
+	let Shell_parserLista_5 = new Map( [
+		
+		[ " " ,  [ false , true , -1 , "white_space" ] ] ,
+		[ "\t" , [ false , true , -1 , "white_space" ] ] ,
+		[ "\r" , [ false , true , -1 , "white_space" ] ] ,
+		[ "\n" , [ false , true , -1 , "white_space" ] ] ,
+		[ "("  , [ false , true , -1 , "zagrada"     ] ] ,
+		[ ")"  , [ false , true , -1 , "zagrada"     ] ] ,
+	
+	] );
+
+	let Shell_parserLista_6 = new Map( [
+		
+		[ " " ,  [ false , true , -1 , "flag_unix"   ] ] ,
+		[ "\t" , [ false , true , -1 , "flag_unix"   ] ] ,
+		[ "\r" , [ false , true , -1 , "white_space" ] ] ,
+		[ "\n" , [ false , true , -1 , "white_space" ] ] ,
+	
+	] );
+
+	let Shell_parserLista_7 = new Map( [
+		
+		[ " " ,  [ false , true , -1 , "flag_gnu"    ] ] ,
+		[ "\t" , [ false , true , -1 , "flag_gnu"    ] ] ,
+		[ "\r" , [ false , true , -1 , "white_space" ] ] ,
+		[ "\n" , [ false , true , -1 , "white_space" ] ] ,
+	
+	] );
+
+	let Shell_parserLista_8 = new Map( [
+		
+		[ ")" ,  [ false , true , -1 , "zagrada"  ] ] ,
+		[ "(" ,  [ false , true ,  0 , "zagrada"  ] ] ,
+		[ "=" ,  [ false , true , -1 , "operator" ] ] ,
+		[ "*" ,  [ false , true , -1 , "operator" ] ] ,
+		[ " " ,  [ false , true , -1 , "variable" ] ] ,
+		[ "\t" , [ false , true , -1 , "variable" ] ] ,
+		[ "\r" , [ false , true , -1 , "variable" ] ] ,
+		[ "\n" , [ false , true , -1 , "variable" ] ] ,
+	
+	] );
+
+Shell_parserTokeni.set( 0, Shell_parserLista_0 )
+                  .set( 1, Shell_parserLista_1 )
+                  .set( 2, Shell_parserLista_2 )
+                  .set( 3, Shell_parserLista_3 )
+                  .set( 4, Shell_parserLista_4 )
+                  .set( 5, Shell_parserLista_5 )
+                  .set( 6, Shell_parserLista_6 )
+                  .set( 7, Shell_parserLista_7 )
+                  .set( 8, Shell_parserLista_8 )
+
+let Shell_parserSpecListe = new Map();
+	
+	let Shell_parserSpecLista_0 = new Map( [
+		
+		/* ----- GNU UTILS ----- */
+
+		[ "sudo"   , "gnu_utils_spec_2" ] ,
+
+		[ "alias"    , "gnu_utils" ] ,
+		[ "awk"      , "gnu_utils" ] ,
+		[ "cat"      , "gnu_utils" ] ,
+		[ "chmod"    , "gnu_utils" ] ,
+		[ "chown"    , "gnu_utils" ] ,
+		[ "cd"       , "gnu_utils" ] ,
+		[ "cp"       , "gnu_utils" ] ,
+		[ "crontab"  , "gnu_utils" ] ,
+		[ "date"     , "gnu_utils" ] ,
+		[ "df"       , "gnu_utils" ] ,
+		[ "du"       , "gnu_utils" ] ,
+		[ "echo"     , "gnu_utils" ] ,
+		[ "free"     , "gnu_utils" ] ,
+		[ "grep"     , "gnu_utils" ] ,
+		[ "ls"       , "gnu_utils" ] ,
+		[ "lsblk"    , "gnu_utils" ] ,
+		[ "man"      , "gnu_utils" ] ,
+		[ "mv"       , "gnu_utils" ] ,
+		[ "mkdir"    , "gnu_utils" ] ,
+		[ "mount"    , "gnu_utils" ] ,
+		[ "read"     , "gnu_utils" ] ,
+		[ "rm"       , "gnu_utils" ] ,
+		[ "sleep"    , "gnu_utils" ] ,
+		[ "sort"     , "gnu_utils" ] ,
+		[ "test"     , "gnu_utils" ] ,
+		[ "time"     , "gnu_utils" ] ,
+		[ "top"      , "gnu_utils" ] ,
+		[ "touch"    , "gnu_utils" ] ,
+		[ "unalias"  , "gnu_utils" ] ,
+		[ "umount"   , "gnu_utils" ] ,
+		[ "xsetroot" , "gnu_utils" ] ,
+		[ "watch"    , "gnu_utils" ] ,
+		/* ----- */
+		[ "rename"   , "util_linux" ] ,
+
+		/* ----- Prepoznati programi ----- */
+
+		[ "pacman"  , "prepoznat_program" ] ,
+		[ "vim"     , "prepoznat_program" ] ,
+
+		/* ----- Rezervisane reči ----- */
+
+		[ "if"    , "rezervisana_rec" ] ,
+		[ "fi"    , "rezervisana_rec" ] ,
+		[ "elif"  , "rezervisana_rec" ] ,
+		[ "else"  , "rezervisana_rec" ] ,
+		[ "case"  , "rezervisana_rec" ] ,
+		[ "esac"  , "rezervisana_rec" ] ,
+		[ "for"   , "rezervisana_rec" ] ,
+		[ "while" , "rezervisana_rec" ] ,
+		[ "then"  , "rezervisana_rec" ] ,
+		[ "in"    , "rezervisana_rec" ] ,
+		[ "do"    , "rezervisana_rec" ] ,
+		[ "done"  , "rezervisana_rec" ] ,
+
+		/* ----- Rezervisane reči ----- */
+
+		[ "true"  , "spec_token"      ] ,
+		[ "false" , "spec_token"      ] ,
+
+	] );
+
+Shell_parserSpecListe.set( 0 , Shell_parserSpecLista_0 );
+
+let Shell_definicijaJezika = {
+	
+	naziv:                 "Shell",
+	defaultKlasa:          "identifikator",
+	lekser:                lekserOpsti,
+	parser:                parserOpsti,
+	lekserTokeni:          Shell_lekserTokeni,
+	maksDuzinaSpajanje:    2,
+	kontekstZaGenerike:    -1,
+	kontekstZaRegex:       -1,
+	parserPrepravaljanje:  Shell_parserPrepravljanje,
+	parserTokeni:          Shell_parserTokeni,
+	parserSpecListe:       Shell_parserSpecListe,
+	funkcijaPrepravke:     funkcijaPrepravkeShell,
+	//pomTekst:              tekstPython
+
+}
+/* -------------------------------------------------------------------------- */
 
 let mapaKlasa = new Map();
 
 mapaKlasa.set("language-text",       TXT_definicijaJezika)
+         .set("language-shellsym",   ShellSym_definicijaJezika)
          .set("language-assembler",  Assembler_definicijaJezika)
          .set("language-c",          C_definicijaJezika)
          .set("language-clike",      CLIKE_definicijaJezika)
@@ -2309,9 +2658,11 @@ mapaKlasa.set("language-text",       TXT_definicijaJezika)
          .set("language-regex",      RegEx_definicijaJezika)
          .set("language-sql",        SQL_definicijaJezika)
          .set("language-xml",        XML_definicijaJezika)
+         .set("language-shell",      Shell_definicijaJezika)
 
 let spisakKlasa = [
 	"language-text",
+	"language-shellsym",
 	"language-assembler",
 	"language-c",
 	"language-clike",
@@ -2328,4 +2679,6 @@ let spisakKlasa = [
 	"language-regex",
 	"language-sql",
 	"language-xml",
+	"language-shell",
 ];
+
