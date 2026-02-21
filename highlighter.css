@@ -35,14 +35,16 @@
 	flex-direction:  column;
 	justify-content: flex-start;
 	align-items:     stretch;
-	//flex-wrap:       wrap;
-	overflow:        hidden;
+	/* flex-wrap:       wrap; */
+	overflow:        auto;
 	position:        relative;
 	font-family:     Inconsolata, Consolas, monospace;
 }
 
 #polje_ispis {
-	width:         100%;
+	display:  block;
+	flex-direction: row;
+	/* width:         100%; */
 	height:        100%;
 	font-size:     18px;
 	padding:       1em;
@@ -85,8 +87,12 @@ span {
 }
 
 .language,
+.language-text,
 .language-assembler,
+.language-c,
 .language-clike,
+.language-cpp,
+.language-csharp,
 .language-css,
 .language-html,
 .language-java,
@@ -97,13 +103,15 @@ span {
 .language-python,
 .language-regex,
 .language-sql,
-.language-text,
-.language-xml {
+.language-xml,
+.language-shell {
+	/* ----- ??? ----- */
+	display:       block;
 	flex:          1;
 	font-size:     18px;
 	font-family:   inherit;
 	tab-size:      4;
-	-moz-tab-size: 8;
+	-moz-tab-size: 4;
 	background:    #313444;
 	border-radius: 4px;
 	
@@ -116,7 +124,7 @@ span {
 
 .token {
 	font-family:    Inconsolata-Light, Consolas, monospace;
-	font-size:      0.95rem;
+	font-size:      1.05rem;
 	letter-spacing: 0;
 	line-height:    1.3;
 	white-space:    break-spaces;
@@ -138,9 +146,10 @@ span {
 .niska_apostrofi,
 .niska_navodnici,
 .niska_backtick {
-	color: #8a3;	
-	color: #ce8;	
-	color: #bd8;	
+    /* color: #8a3;	 */
+/*     color: #ce8;	 */
+    /* color: #bd8;	 */
+    color: #97aa7a;	
 }
 
 .rezervisana_rec {
@@ -153,8 +162,8 @@ span {
 	color: #feb;
 	color: #fee;
 	color: #fd4;
-	color: #fe8;
 	color: #fc9;
+	color: #fe8;
 }
 
 .blok_koda_otvarajuca_zagrada,
@@ -207,8 +216,8 @@ span {
 
 .svojstvo_naziv {
 	color: #d99;
-	color: #ffd;
-	color: #eed;
+	color: #ffa;
+	/* color: #eed; */
 }
 
 .svojstvo_vrednost {
@@ -245,11 +254,13 @@ span {
 	color: #79f;
 	color: #eb8;
 	color: #cbf;
+	color: #a9f;
 }
 
 .tip_promenljive {
 	color: #f80;
 	color: #d9f;
+	color: #cce6ff;
 }
 
 .pretprocesorska_direktiva {
@@ -322,12 +333,15 @@ span {
 .regularni_izraz,
 .regex,
 .generik,
-.heredoc_nowdoc {
+.heredoc_nowdoc,
+.language-javascript .regex_klase_znakova,
+.language-javascript .regex_zagrada {
 	color: #aef;
-	color: #adf;
 	color: #99f;
 	color: #f9c;
 	color: #b9f;
+	color: #adf;
+	color: #dbf;
 }
 
 .regex_pocetak,
@@ -342,4 +356,134 @@ span {
 
 .php_blok {
 	color: #fe7;	
+}
+
+/* ---------- JSON ----------- */
+
+.language-json .rezervisana_rec {
+	color: #7744ff;
+	font-weight: 900;
+}
+
+.language-json .specijalni_token {
+	/* color: #ff4477; */
+	color: #d04c70;
+	font-weight: 900;
+}
+
+.language-json .niz_zagrada {
+	color: #fe8;
+}
+
+.language-json .json_obj_zagrada,
+.language-json .json_obj_zagrada_otvorena,
+.language-json .json_obj_zagrada_zatvorena {
+	color: #fe8;
+}
+
+.language-json .boolean,
+.language-json .json_obj_zagrada_X {
+	color: #6678bf;
+	font-weight: 800;
+}
+
+.language-json .operator {
+	color: #fe8;
+}
+
+.language-json .svojstvo_naziv {
+	color: #eed;
+}
+
+.language-json .svojstvo_dodela {
+	color: #fe8;
+}
+
+/* ---------- Shell ---------- */
+
+.language-shell .niska_apostrofi,
+.language-shell .niska_navodnici,
+.language-shell .niska_backtick {
+	color: #97ae76;
+}
+
+.language-shell .zagrada {
+	color: #fe7;
+}
+
+.language-shell .operator {
+	color: #eee297;
+}
+
+.language-shell .conditional_zagrada {
+	color: #a5a9ea;
+}
+
+.language-shell .pajp_simbol {
+	color: #f9c343;
+}
+
+.language-shell .redirekcija_overwrite {
+	color: #f9c343;
+}
+
+.language-shell .redirekcija_append {
+	color: #f9c343;
+}
+
+.language-shell .gnu_flag {
+	color: #f00;
+}
+
+.language-shell .variable {
+	color: #cf95db;
+}
+
+.language-shell .var_dolar {
+	color: #9c61a8;
+}
+
+.language-shell .gnu_utils_spec {
+	color: #fa4;
+}
+
+.language-shell .gnu_utils_spec_2 {
+	color: #ca656e;
+}
+
+.language-shell .gnu_utils {
+	color: #9cf;
+}
+
+.language-shell .prepoznat_program {
+	color: #dfc490;
+}
+
+.language-shell .rezervisana_rec {
+	color: #eea478;
+}
+
+.language-shell .putanja {
+	color: #a68573;
+}
+
+.language-shell .flag_unix {
+	color: #6299b5;
+}
+
+.language-shell .flag_gnu {
+	color: #6299b5;
+}
+
+.language-shell .sudo_naredba {
+	color: #cc515d;
+	color: #ca656e;
+}
+
+.language-shell .obicna_naredba {
+	color: #918793;
+}
+
+.language-shell .spec_token {
+	color: #9cf;
 }
